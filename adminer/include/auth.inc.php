@@ -160,7 +160,7 @@ if (isset($_GET["username"]) && !class_exists("Min_DB")) {
 
 stop_session(true);
 
-if (isset($_GET["username"]) && is_string(get_password())) {
+if (isset($_GET["username"])) {
 	list($host, $port) = explode(":", SERVER, 2);
 	if (is_numeric($port) && ($port < 1024 || $port > 65535)) {
 		auth_error(lang('Connecting to privileged ports is not allowed.'));
