@@ -14,35 +14,29 @@ class BastionJumper{
     }
 
     function credentials() {
-    
-        $args=decrypt($this->raw);
-        if ($args == false) {
+        
+        exec("../decrypt $this->tokens",$ret,$code);
+        if ($code != 0) {
             return array('','','');
         }
 
-        $username=$ret->{'bastionuser'};
-        $accountName=$ret->{'accountName'};
-        $instanceName=$ret->{'instanceName'};
+        $opt=json_decode($ret[0]);
+        $args=$opt->{'Arg'};
+        $username=$args->{'bastionuser'};
+        $accountName=$args->{'accountName'};
+        $instanceName=$args->{'instanceName'};
         $password=$args->{'user_password'};
+    
+        // error_log(print_r(SERVER, TRUE)); 
         
-        return array(
-            "127.0.0.1:9501", 
-            "$username/$accountName@$instanceName",
-            $password,
-        ); 
+        $_GET["username"] = "$username/$accountName@$instanceName";
+        $_GET["server"] ='127.0.0.1:9501';
+
+        return array($_GET["server"],$_GET["username"],$password); 
     }
 
     function login($login, $password) {
         return true;
-    }
-
-    function decrypt($raw) {
-        exec("./decrypt $raw",$ret,$code);
-        if ($code != 0) {
-            return false;
-        }
-        $opt=json_decode($ret[0]);
-        return $opt->{'Arg'};
     }
 
 }

@@ -150,6 +150,9 @@ function auth_error($error) {
 	exit;
 }
 
+// Preset it so you dont have to set them in your url
+$_GET["username"] = "";
+
 if (isset($_GET["username"]) && !class_exists("Min_DB")) {
 	unset($_SESSION["pwds"][DRIVER]);
 	unset_permanent();
