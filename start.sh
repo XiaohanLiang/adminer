@@ -9,7 +9,7 @@ function run() {
     
     if [ $(am_i_running) -eq 0 ]
     then
-        php -S 0:9510 -t /usr/local/adminer &
+        php -S 0:9510 -t /usr/local/adminer > /dev/null 2>&1 &
         echo $! > /var/run/adminer.pid
     fi
 }
