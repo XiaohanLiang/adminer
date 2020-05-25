@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  Bastion and his friends :)
+ *  Bastion cake
  *
  * */
 
@@ -9,8 +9,9 @@ class BastionJumper{
 
     var $tokens;
 
-    function __construct($raw) {
-        $this->tokens = $raw;
+    function __construct() {
+        // error_log(print_r($some, TRUE)); 
+        $this->tokens = $_GET["setting"];
     }
 
     function credentials() {
@@ -27,10 +28,14 @@ class BastionJumper{
         $instanceName=$args->{'instanceName'};
         $password=$args->{'user_password'};
     
-        // error_log(print_r(SERVER, TRUE)); 
+        error_log(print_r(SERVER, TRUE)); 
         
-        $_GET["username"] = "$username/$accountName@$instanceName";
-        $_GET["server"] ='127.0.0.1:9501';
+        // $password="my-secret-pw";
+        // $_GET["username"] = "$username/$accountName@$instanceName";
+        // $_GET["username"] = "xiaohan/mysql-root@delete_me";
+        // $_GET["username"] = "root";
+        // $_GET["server"] ='10.226.211.165:9501';
+        // $_GET["server"] ='127.0.0.1:3306';
 
         return array($_GET["server"],$_GET["username"],$password); 
     }
