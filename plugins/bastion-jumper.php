@@ -28,7 +28,7 @@ class BastionJumper{
         $instanceName=$args->{'instanceName'};
         $password=$args->{'user_password'};
     
-        error_log(print_r(SERVER, TRUE)); 
+        // error_log(print_r(SERVER, TRUE)); 
         
         // $password="my-secret-pw";
         // $_GET["username"] = "$username/$accountName@$instanceName";
@@ -37,7 +37,11 @@ class BastionJumper{
         // $_GET["server"] ='10.226.211.165:9501';
         // $_GET["server"] ='127.0.0.1:3306';
 
-        return array($_GET["server"],$_GET["username"],$password); 
+        //$server="127.0.0.1:1433";
+        //$username="sa";
+        //$password="";
+        
+       return array($server,$username,$password); 
     }
 
     function login($login, $password) {
